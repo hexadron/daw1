@@ -1,5 +1,5 @@
 # Test setup
-
-  brew install qt
-  bundle
-  rspec
+	
+	brew install qt
+	bundle
+	rspec
