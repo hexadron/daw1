@@ -1,11 +1,4 @@
-spec/.bundle
-# Ignore all logfiles and tempfiles.
-spec/log/*.log
-spec/tmp
-
 *.swp
-
 /build
 id
 id.pub
-
