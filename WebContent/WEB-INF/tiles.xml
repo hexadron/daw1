@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration
+2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	
+	<definition name="d_bienvenida" 
+	            template="/plantillas/plantilla01.jsp">
+	      
+	      <put-attribute name="cabecera" 
+	                     value="/paginas/cabecera.jsp"/>
+	      <put-attribute name="menu" 
+	                     value="/paginas/menu.jsp"/>      
+	       
+	      <put-attribute name="body" 
+	                     value="/paginas/bienvenida.jsp"/>
+	                     
+	      <put-attribute name="pie" 
+	                     value="/paginas/pie.jsp"/>                   
+	
+	</definition>
+	
+	<definition name="d_vendedorList" extends="d_bienvenida">
+		<put-attribute name="body" value ="/paginas/vendedorListado.jsp"></put-attribute>
+	</definition>
+
+</tiles-definitions>

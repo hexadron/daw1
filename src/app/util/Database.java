@@ -29,7 +29,7 @@ public class Database {
 		ds.setDriverClassName("com.mysql.jdbc.Driver");
 		ds.setUsername("root");
 		ds.setPassword("");
-		ds.setUrl("jdbc:mysql://localhost/app");
+		ds.setUrl("jdbc:mysql://localhost/daw1");
 		return ds;
 	}
 

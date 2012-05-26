@@ -23,7 +23,7 @@ public abstract class ORZ implements Serializable {
 	@SuppressWarnings("unchecked")
 	public <T> T find(long id) {
 		Connection db = null;
-		String sql = "SELECT * FROM " + getTable() + " WHERE " + getColumnaBase() + " = ?";
+		String sql = "SELECT * FROM " + getTable() + " WHERE " + getIdField() + " = ?";
 		try {
 			db = Database.getConnection();
 			PreparedStatement ps = db.prepareStatement(sql);
@@ -83,7 +83,7 @@ public abstract class ORZ implements Serializable {
 		Connection db = null;
 		String sql = "SELECT * FROM " + getTable() + " WHERE ";
 		
-		if (query.split(" ").length > 1) // si contiene una condicion
+		if (query.split(" ").length > 1) // si contiene una condicion, e.g.: algo = ?
 			sql += query; 
 		else
 			sql += query + " = ?";
@@ -102,15 +102,15 @@ public abstract class ORZ implements Serializable {
 				String name, colname;
 				T o = (T) getClass().newInstance();
 				for (int i = 1; i <= rsmd.getColumnCount(); i++) {
-						colname = rsmd.getColumnName(i); 
+					colname = rsmd.getColumnName(i); 
 					name = colname.endsWith("_id") ? colname.replace("_id", "") : colname;
 					Object val = rs.getObject(colname);
 					if (val != null) {
 						Method m = getSetter(name);
 						Class<?> type = m.getParameterTypes()[0];
 						if (type.getSuperclass() != null &&
-							type.getSuperclass().equals(this.getClass().getSuperclass()))
-								m.invoke(o, find((Class<? extends ORZ>) type, (Integer) val));
+								type.getSuperclass().equals(this.getClass().getSuperclass()))
+							m.invoke(o, find((Class<? extends ORZ>) type, (Integer) val));
 						else
 							m.invoke(o, val);
 					}
@@ -127,9 +127,9 @@ public abstract class ORZ implements Serializable {
 	
 	@SuppressWarnings("unchecked")
 	public <T> T save() {
-		if (getGetter(getColumnaBase()) != null) {
+		if (getGetter(getIdField()) != null) {
 			try {
-				Object id = getGetter(getColumnaBase()).invoke(this);
+				Object id = getGetter(getIdField()).invoke(this);
 				if (id.toString().equals("0"))
 					create();
 				else
@@ -137,8 +137,9 @@ public abstract class ORZ implements Serializable {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else
-				create();
+		} else {
+			create();
+		}
 		return (T) this;
 	}
 	
@@ -175,8 +176,8 @@ public abstract class ORZ implements Serializable {
 						f.getType().getSuperclass().equals(this.getClass().getSuperclass())) {
 					Method idGetter = null;
 					Object obj = getGetter(f.getName()).invoke(this);
-					if (obj.getClass().getMethod("get" + capitalize(((ORZ) obj).getColumnaBase())) != null)
-						idGetter = obj.getClass().getMethod("get" + capitalize(((ORZ) obj).getColumnaBase()));
+					if (obj.getClass().getMethod("get" + capitalize(((ORZ) obj).getIdField())) != null)
+						idGetter = obj.getClass().getMethod("get" + capitalize(((ORZ) obj).getIdField()));
 					ps.setObject(i + 1, idGetter.invoke(obj));
 				} else
 					ps.setObject(i + 1, getGetter(f.getName()).invoke(this));
@@ -186,7 +187,7 @@ public abstract class ORZ implements Serializable {
 			ResultSet rs = ps.getGeneratedKeys();
 			
 			if (rs.next()) {
-				Method m = getSetter(getColumnaBase());
+				Method m = getSetter(getIdField());
 				if (m != null)
 					m.invoke(this, rs.getLong(1));
 			}
@@ -211,7 +212,7 @@ public abstract class ORZ implements Serializable {
 			sql.append(fields[i]).append(" = ?, ");
 		
 		sql.delete(sql.length() - 2, sql.length());
-		sql.append(" WHERE " + getColumnaBase() + " = ?");
+		sql.append(" WHERE " + getIdField() + " = ?");
 		try {
 			db = Database.getConnection();
 			PreparedStatement ps = db.prepareStatement(sql.toString());
@@ -220,22 +221,21 @@ public abstract class ORZ implements Serializable {
 			for (; i++ <= fields.length - 1;) {
 				Field f = null;
 				if (fields[i - 1].endsWith("_id"))
-					f = getClass().getDeclaredField(fields[i - 1].
-							substring(0, fields[i - 1].length() - 3));
+					f = getClass().getDeclaredField(fields[i - 1].substring(0, fields[i - 1].length() - 3));
 				else
 					f = getClass().getDeclaredField(fields[i - 1]);
 				if (f.getType().getSuperclass() != null && 
 						f.getType().getSuperclass().equals(this.getClass().getSuperclass())) {
 					Method idGetter = null;
 					Object obj = getGetter(f.getName()).invoke(this);
-					if (obj.getClass().getMethod("get" + capitalize(((ORZ) obj).getColumnaBase())) != null)
-						idGetter = obj.getClass().getMethod("get" + capitalize(((ORZ) obj).getColumnaBase()));
+					if (obj.getClass().getMethod("get" + capitalize(((ORZ) obj).getIdField())) != null)
+						idGetter = obj.getClass().getMethod("get" + capitalize(((ORZ) obj).getIdField()));
 					ps.setObject(i, idGetter.invoke(obj));
 				} else
 					ps.setObject(i, getGetter(f.getName()).invoke(this));
 			}
 		
-			ps.setLong(i, (Long) getGetter(getColumnaBase()).invoke(this));
+			ps.setLong(i, (Long) getGetter(getIdField()).invoke(this));
 			ps.executeUpdate();
 			return (T) this;
 		} catch (Exception e) {
@@ -249,11 +249,11 @@ public abstract class ORZ implements Serializable {
 	@SuppressWarnings("unchecked")
 	public <T> T delete() {
 		Connection db = null;
-		String sql = "DELETE FROM " + getTable() + " WHERE " + getColumnaBase() + " = ?";
+		String sql = "DELETE FROM " + getTable() + " WHERE " + getIdField() + " = ?";
 		try {
 			db = Database.getConnection();
 			PreparedStatement ps = db.prepareStatement(sql);
-			ps.setLong(1, (Long) getGetter(getColumnaBase()).invoke(this));
+			ps.setLong(1, (Long) getGetter(getIdField()).invoke(this));
 			ps.executeUpdate();
 			return (T) this;
 		} catch (Exception e) {
@@ -269,7 +269,7 @@ public abstract class ORZ implements Serializable {
 		try {
 			T o = c.newInstance().find(id);
 			String sql = "DELETE FROM " + ((ORZ) o).getTable() + " WHERE " + 
-					((ORZ) o).getColumnaBase() + " = ?";
+					((ORZ) o).getIdField() + " = ?";
 			db = Database.getConnection();
 			PreparedStatement ps = db.prepareStatement(sql);
 			ps.setLong(1, id);
@@ -293,7 +293,7 @@ public abstract class ORZ implements Serializable {
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next())
-				if (!(rs.getString(1).equals(getColumnaBase())))
+				if (!(rs.getString(1).equals(getIdField())))
 					fields.append(rs.getString(1)).append(", ");
 			
 			fields.delete(fields.lastIndexOf(","), fields.length());
@@ -339,7 +339,7 @@ public abstract class ORZ implements Serializable {
 		return name.toLowerCase().toString();
 	}
 	
-	protected String getColumnaBase() {
+	protected String getIdField() {
 		return "id";
 	}
 
