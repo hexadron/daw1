@@ -10,4 +10,16 @@ public class MySQLDAOFactory extends DAOFactory {
 		return new VendedorDAOImpl();
 	}
 
+	@Override
+	public DistritoDAO getDistritoDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public EstadoCivilDAO getEstadoCivilDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

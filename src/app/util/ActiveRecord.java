@@ -7,9 +7,9 @@ import java.util.*;
 import static app.util.Utilities.*;
 
 @SuppressWarnings("serial")
-public abstract class ORZ implements Serializable {
+public abstract class ActiveRecord implements Serializable {
 	
-	public static <T> T find(Class<? extends ORZ> c, long id) {
+	public static <T> T find(Class<? extends ActiveRecord> c, long id) {
 		try {
 			return c.newInstance().find(id);
 		} catch (InstantiationException e) {
@@ -44,7 +44,7 @@ public abstract class ORZ implements Serializable {
 						Class<?> type = m.getParameterTypes()[0];
 						if (type.getSuperclass() != null &&
 								type.getSuperclass().equals(this.getClass().getSuperclass()))
-							m.invoke(o, find((Class<? extends ORZ>) type, (Integer)val));
+							m.invoke(o, find((Class<? extends ActiveRecord>) type, (Integer)val));
 						else
 							m.invoke(o, val);
 					}
@@ -59,7 +59,7 @@ public abstract class ORZ implements Serializable {
 		return null;
 	}
 	
-	public static <T> List<T> all(Class<? extends ORZ> c) {
+	public static <T> List<T> all(Class<? extends ActiveRecord> c) {
 		try {
 			return c.newInstance().where("1 = 1");
 		} catch (Exception e) {
@@ -68,7 +68,7 @@ public abstract class ORZ implements Serializable {
 		return null;
 	}
 	
-	public static <T> List<T> where(Class<? extends ORZ> c, String query, Object... values) {
+	public static <T> List<T> where(Class<? extends ActiveRecord> c, String query, Object... values) {
 		try {
 			return c.newInstance().where(query, values);
 		} catch (Exception e) {
@@ -110,7 +110,7 @@ public abstract class ORZ implements Serializable {
 						Class<?> type = m.getParameterTypes()[0];
 						if (type.getSuperclass() != null &&
 								type.getSuperclass().equals(this.getClass().getSuperclass()))
-							m.invoke(o, find((Class<? extends ORZ>) type, (Integer) val));
+							m.invoke(o, find((Class<? extends ActiveRecord>) type, (Integer) val));
 						else
 							m.invoke(o, val);
 					}
@@ -176,8 +176,8 @@ public abstract class ORZ implements Serializable {
 						f.getType().getSuperclass().equals(this.getClass().getSuperclass())) {
 					Method idGetter = null;
 					Object obj = getGetter(f.getName()).invoke(this);
-					if (obj.getClass().getMethod("get" + capitalize(((ORZ) obj).getIdField())) != null)
-						idGetter = obj.getClass().getMethod("get" + capitalize(((ORZ) obj).getIdField()));
+					if (obj.getClass().getMethod("get" + capitalize(((ActiveRecord) obj).getIdField())) != null)
+						idGetter = obj.getClass().getMethod("get" + capitalize(((ActiveRecord) obj).getIdField()));
 					ps.setObject(i + 1, idGetter.invoke(obj));
 				} else
 					ps.setObject(i + 1, getGetter(f.getName()).invoke(this));
@@ -228,8 +228,8 @@ public abstract class ORZ implements Serializable {
 						f.getType().getSuperclass().equals(this.getClass().getSuperclass())) {
 					Method idGetter = null;
 					Object obj = getGetter(f.getName()).invoke(this);
-					if (obj.getClass().getMethod("get" + capitalize(((ORZ) obj).getIdField())) != null)
-						idGetter = obj.getClass().getMethod("get" + capitalize(((ORZ) obj).getIdField()));
+					if (obj.getClass().getMethod("get" + capitalize(((ActiveRecord) obj).getIdField())) != null)
+						idGetter = obj.getClass().getMethod("get" + capitalize(((ActiveRecord) obj).getIdField()));
 					ps.setObject(i, idGetter.invoke(obj));
 				} else
 					ps.setObject(i, getGetter(f.getName()).invoke(this));
@@ -264,12 +264,12 @@ public abstract class ORZ implements Serializable {
 		return null;
 	}
 	
-	public static <T> T delete(Class<? extends ORZ> c, long id) {
+	public static <T> T delete(Class<? extends ActiveRecord> c, long id) {
 		Connection db = null;
 		try {
 			T o = c.newInstance().find(id);
-			String sql = "DELETE FROM " + ((ORZ) o).getTable() + " WHERE " + 
-					((ORZ) o).getIdField() + " = ?";
+			String sql = "DELETE FROM " + ((ActiveRecord) o).getTable() + " WHERE " + 
+					((ActiveRecord) o).getIdField() + " = ?";
 			db = Database.getConnection();
 			PreparedStatement ps = db.prepareStatement(sql);
 			ps.setLong(1, id);
