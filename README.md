@@ -34,16 +34,17 @@ In app/util/Seeds.java
 ## YML files
 Examples:
 
-- estado_civil.yml
+>> estado_civil.yml
 
       descripcion: soltero
       ---
       descripcion: casado
       ---
       descripcion: divorciado
+
 note: estado_civil.yml file maps to EstadoCivil class.
 
-- vendedor.yml
+>> vendedor.yml
 
       nombre: Jorge
       apellido: Arcos
@@ -65,6 +66,7 @@ note: estado_civil.yml file maps to EstadoCivil class.
       fechaNacimiento: 1980-05-15
       estadoCivil: 3
       distrito: 2
+      
 note: Unfortunately, there is no way to connect with other relationships by name without exploding my brain with java. For my health, the only way to map to other relationships is with the id… Because that, the dependency order is very important. TODO: get a better way to connect entities.
 
 ## Usage
