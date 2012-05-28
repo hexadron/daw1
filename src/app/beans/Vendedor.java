@@ -70,4 +70,12 @@ public class Vendedor extends ActiveRecord {
 		this.distrito = distrito;
 	}
 
+	@Override
+	public String toString() {
+		return "{\"id\":\"" + id + "\", \"nombre\":\"" + nombre + "\", \"apellido\":\""
+				+ apellido + "\", \"edad\":\"" + edad + "\", \"fechaNacimiento\":\""
+				+ fechaNacimiento + "\", \"estadoCivil\":\"" + estadoCivil
+				+ "\", \"distrito\":\"" + distrito + "\"}";
+	}	
+
 }

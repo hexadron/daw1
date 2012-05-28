@@ -18,5 +18,22 @@ public abstract class Utilities {
     public static String decode(String value) {
     	return StringEscapeUtils.unescapeHtml(value);
     }
+
+	public static String camelCase(String str) {
+		if (str.indexOf("_") != -1) {
+			String[] parts = str.split("_");
+			String camelCase = "";
+			for (int i = 0; i < parts.length; i++) {
+				String part = parts[i];
+				if (i == 0)
+					camelCase += part.toLowerCase();
+				else
+					camelCase += Utilities.capitalize(part);
+			}
+			return camelCase;
+		} else {
+			return str.substring(0, 1).toLowerCase() + str.substring(1);
+		}
+	}
     
 }

@@ -343,4 +343,30 @@ public abstract class ActiveRecord implements Serializable {
 		return "id";
 	}
 
+	public static void truncate(Class<? extends ActiveRecord> model) {
+		try {
+			model.newInstance().truncate();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void truncate() {		
+		Connection db = null;
+		try {
+			db = Database.getConnection();
+
+			PreparedStatement ps = db.prepareStatement("truncate " + getTable());
+			ps.execute();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Database.close(db);
+		}		
+		
+	}
+
 }

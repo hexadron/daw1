@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,20 +18,26 @@ public class SuperSeeder {
 	private List<String> files;
 	private String dataFolder;
 	private String objectPackage;
+	private boolean fromScratch;
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public Map<String, List<?>> superSeed() {
 		data = new HashMap<String, List<?>>();
 		
+		// TODO: debo hacer truncates D:		
 		if (files == null) {
-			files = getFiles();
+			this.loadFiles();
 		}
 		
 		try {
 			for	(String f : files) {
-				Class _class = Class.forName(objectPackage + "." +  toClassName(f));
+				Class<? extends ActiveRecord> _class =
+						(Class<? extends ActiveRecord>) Class.forName(objectPackage + "." +  toClassName(f));
 				List<?> subSet = readYML(f, _class);
-				save(subSet);
+				if (fromScratch) {
+					this.destroyTable(_class);
+				}
+				this.save(subSet);
 				data.put(_class.getName(), subSet);
 			}
 		} catch(Exception e) {
@@ -41,6 +46,10 @@ public class SuperSeeder {
 		
 		System.out.println("FIN. :). TODO: imprimir algo mejor.");		
 		return data;
+	}
+
+	private void destroyTable(Class<? extends ActiveRecord> model) {
+		ActiveRecord.truncate(model);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -68,7 +77,7 @@ public class SuperSeeder {
 	}
 
 	@SuppressWarnings("unchecked")
-	private static <T> T toAR(Map<String, Object> info, Class<?> _class) {
+	private <T> T toAR(Map<String, Object> info, Class<?> _class) {
 		try {
 			T instance = (T) _class.newInstance();
 			Method[] methods = _class.getMethods();
@@ -76,7 +85,7 @@ public class SuperSeeder {
 			for (Method m : methods)
 				if (m.getName().startsWith("set")) {
 					String attr = m.getName().substring(3);
-					attr = attr.substring(0, 1).toLowerCase() + attr.substring(1);
+					attr = Utilities.camelCase(attr);
 					
 					Object value = info.get(attr);
 					
@@ -84,7 +93,7 @@ public class SuperSeeder {
 					
 					if (value != null) {
 						Class<?> vType = value.getClass();
-						Class<?> pType = paramsTypes[0]; 
+						Class<?> pType = paramsTypes[0];
 						if (vType.equals(pType)) {
 							m.invoke(instance, value);
 						} else {
@@ -92,8 +101,8 @@ public class SuperSeeder {
 								
 								Class<? extends ActiveRecord> arType = (Class<? extends ActiveRecord>) pType; 
 								
-								Object arObject = arType.newInstance(); 
-								arObject = ActiveRecord.find(arType, Long.parseLong(value.toString()));
+								Object arObject = 
+										ActiveRecord.find(arType, Long.parseLong(value.toString()));
 								
 								if (arObject != null) {
 									m.invoke(instance, arObject);
@@ -110,44 +119,20 @@ public class SuperSeeder {
 				}
 
 			return instance;
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return null;
-		} catch (SecurityException e) {
-			e.printStackTrace();
-			return null;
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-			return null;
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return null;
-		} catch (InvocationTargetException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 
-	private static String toClassName(String f) {
-		// .../estado_civil.yml => EstadoCivil
+	private String toClassName(String f) {
 		int last_slash = f.lastIndexOf("/");
 		String className = f.substring(last_slash + 1, f.length() - 4);
-		
-		if (className.indexOf("_") != -1) {
-			String[] parts = className.split("_");
-			String end = "";
-			for (String p : parts) {
-				end += Utilities.capitalize(p);
-			}
-			className = end;
-		} else {
-			className = Utilities.capitalize(className);
-		}
-		return className;
+		return Utilities.capitalize(Utilities.camelCase(className));
 	}
 
-	private List<String> getFiles() {
-		String folderName = sourceFolder(this.dataFolder);
+	private void loadFiles() {
+		String folderName = this.sourceFolder();
 		
 		File folder = new File(folderName);
 		List<String> filenames = new ArrayList<String>();
@@ -163,16 +148,17 @@ public class SuperSeeder {
 			filenames.add(folderName + "/" + f.getName());
 		}
 		
-		return filenames;
+		this.files = filenames;
 	}
 
-	private String sourceFolder(String dataFolder2) {
+	private String sourceFolder() {
 		return System.getProperty("user.dir") + "/src/" + this.dataFolder;
 	}
 
-	public static void save(List<?> subSet) {
-		for (Object item : subSet) {
+	public void save(List<?> subSet) {
+		for (Object item : subSet) {			
 			((ActiveRecord) item).save();
+			System.out.println(item.toString());
 		}
 	}
 
@@ -185,13 +171,17 @@ public class SuperSeeder {
 	}
 
 	public void dependencyOrder(String... names) {
-		files = new ArrayList<String>();
+		this.files = new ArrayList<String>();
 		
-		String folderName = sourceFolder(dataFolder);
+		String folderName = this.sourceFolder();
 		
 		for (String n : names) {
-			files.add(folderName + "/" + n + ".yml");
+			this.files.add(folderName + "/" + n + ".yml");
 		}
+	}
+
+	public void setFromScratch(boolean fromScratch) {
+		this.fromScratch = fromScratch;
 	}
 	
 }

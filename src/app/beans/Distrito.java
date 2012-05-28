@@ -3,7 +3,7 @@ package app.beans;
 import app.util.ActiveRecord;
 
 public class Distrito extends ActiveRecord {
-	
+
 	private static final long serialVersionUID = 1L;
 	
 	private long id;
@@ -23,6 +23,11 @@ public class Distrito extends ActiveRecord {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	
+	@Override
+	public String toString() {
+		return "{\"id\":\"" + id + "\", \"descripcion\":\"" + descripcion + "\"}";
 	}
 
 }

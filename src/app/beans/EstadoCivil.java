@@ -25,4 +25,9 @@ public class EstadoCivil extends ActiveRecord {
 		this.descripcion = descripcion;
 	}
 
+	@Override
+	public String toString() {
+		return "{\"id\":\"" + id + "\", \"descripcion\":\"" + descripcion + "\"}";
+	}
+
 }
