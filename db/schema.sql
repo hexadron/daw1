@@ -17,7 +17,7 @@ create table vendedor (
   nombre varchar(20),
   apellido varchar(20),
   edad int,
-  fechaNacimiento timestamp,
+  fechaNacimiento date,
   estadoCivil_id int references estadoCivil,
   distrito_id int references distrito
 ) default charset=utf8;

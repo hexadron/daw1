@@ -3,11 +3,12 @@
 "-//Apache Software Foundation//DTD Tiles Configuration
 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
+<!-- TILES -->
 <tiles-definitions>
-	
-	<definition name="d_bienvenida" 
+	<!-- DEFINITION CREATES TEMPLATES (PARENTS) -->
+	<definition name="d_bienvenida"
 	            template="/plantillas/plantilla01.jsp">
-	      
+	      <!-- SUBSECTIONS ON THE TEMPLATE -->
 	      <put-attribute name="cabecera" 
 	                     value="/paginas/cabecera.jsp"/>
 	      <put-attribute name="menu" 
@@ -17,10 +18,10 @@
 	                     value="/paginas/bienvenida.jsp"/>
 	                     
 	      <put-attribute name="pie" 
-	                     value="/paginas/pie.jsp"/>                   
-	
+	                     value="/paginas/pie.jsp"/>
 	</definition>
 	
+	<!-- A DEFINITION CAN INHERITS HIS VALUES FROM OTHER -->
 	<definition name="d_vendedorList" extends="d_bienvenida">
 		<put-attribute name="body" value ="/paginas/vendedorListado.jsp"></put-attribute>
 	</definition>

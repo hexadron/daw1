@@ -1,0 +1,41 @@
+nombre: Jorge
+apellido: Arcos
+edad: 25
+fechaNacimiento: 1979-10-10
+estadoCivil: 1
+distrito: 3
+---
+nombre: Mar’a
+apellido: Gutarra
+edad: 25
+fechaNacimiento: 1940-02-20
+estadoCivil: 2
+distrito: 1
+---
+nombre: Patricia
+apellido: Vivas
+edad: 28
+fechaNacimiento: 1980-05-15
+estadoCivil: 3
+distrito: 2
+---
+nombre: Wendy
+apellido: Camarena
+edad: 30
+fechaNacimiento: 1974-11-23
+estadoCivil: 1
+distrito: 3
+---
+nombre: Milagros
+apellido: Jacinto
+edad: 31
+fechaNacimiento: 1975-04-17
+estadoCivil: 2
+distrito: 1
+---
+nombre: Pablo
+apellido: Milanes
+edad: 22
+fechaNacimiento: 1979-03-24
+estadoCivil: 3
+distrito: 2
