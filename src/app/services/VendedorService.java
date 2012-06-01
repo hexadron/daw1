@@ -1,19 +1,19 @@
-package app.dao.interfaces;
+package app.services;
 
-import java.util.*;
+import java.util.List;
 
 import app.beans.Vendedor;
 
-public interface VendedorDAO {
+public interface VendedorService {
 	
 	public boolean autenticar(String nombre, String password);
+
+	public List<Vendedor> obtenerTodos();
 	
-	public Vendedor findById(long id);
-	
-	public List<Vendedor> findAll();
+	public Vendedor obtenerPorCodigo(long codigo);
 
 	public Vendedor actualizarVendedor(Vendedor vendedor);
-
+	
 	public void eliminarVendedor(long codigo);
 
 }

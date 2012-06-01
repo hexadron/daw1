@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	
+	<package name="vendedor" namespace="/" extends="tiles-default">
+		<global-results>
+			<result name="loginVendedor" type="tiles">d_vendedorLogin</result>
+			<result name="listVendedor" type="tiles">d_vendedorList</result>
+			<result name="editVendedor" type="tiles">d_vendedorEdit</result>
+			<result name="detailVendedor" type="tiles">d_vendedorDetail</result>
+		</global-results>
+		
+		<action name="loginVendedor"
+				class="app.actions.VendedorAction"
+				method="loginVendedor" />	
+				
+		<action name="detalleVendedor"
+				class="app.actions.VendedorAction"
+				method="detalleVendedor" />
+		
+		<action name="listadoVendedor"
+				class="app.actions.VendedorAction"
+				method="listadoVendedor" />
+		
+		<action name="cargarVendedor"
+				class="app.actions.VendedorAction"
+				method="cargarVendedor" />
+		
+		<action name="actualizarVendedor"
+				class="app.actions.VendedorAction"
+				method="actualizarVendedor" />
+				
+		<action name="eliminarVendedor"
+				class="app.actions.VendedorAction"
+				method="eliminarVendedor" />
+				
+		<!-- <action name="listadoVendedor">
+			<result type="tiles">d_vendedorList</result>
+		</action> -->
+		
+		<action name="nuevo">
+			<result type="tiles">d_vendedorEdit</result>
+		</action>
+		
+	</package>
+</struts>

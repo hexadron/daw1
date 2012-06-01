@@ -17,4 +17,7 @@
   		org.apache.struts2.tiles.StrutsTilesListener
   	</listener-class>
   </listener>
+  <listener>
+      <listener-class>app.listeners.ListsListener</listener-class>
+  </listener>
 </web-app>

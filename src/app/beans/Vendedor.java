@@ -9,6 +9,7 @@ public class Vendedor extends ActiveRecord {
 	private long id;
 	private String nombre;
 	private String apellido;
+	private String password;
 	private int edad;
 	private String fechaNacimiento;
 	private EstadoCivil estadoCivil;
@@ -36,6 +37,14 @@ public class Vendedor extends ActiveRecord {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public int getEdad() {

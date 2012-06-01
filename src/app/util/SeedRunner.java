@@ -1,6 +1,6 @@
 package app.util;
 
-public class Seeds {
+public class SeedRunner {
 	
 	public static void main(String[] args) {
 		
@@ -9,8 +9,8 @@ public class Seeds {
 		seeder.setDataFolder("app/data");
 		seeder.setObjectPackage("app.beans");
 		
-		// coloca un orden a la carga de ymls... de no utilizar el mŽtodo setFiles,
-		// cargar‡ conforme estŽn, sin importar el orden de las dependencias.
+		// coloca un orden a la carga de ymls... de no utilizar el mï¿½todo setFiles,
+		// cargarï¿½ conforme estï¿½n, sin importar el orden de las dependencias.
 		seeder.dependencyOrder("distrito", "estado_civil", "vendedor");
 		
 		// destruye todo antes de llenar la bd

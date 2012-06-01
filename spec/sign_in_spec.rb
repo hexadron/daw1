@@ -4,11 +4,11 @@ require_relative 'support/spec_helper'
 feature 'InicioSesion' do
 
   scenario 'El usuario ingresa con sus credenciales' do
-    visit 'login'
-    fill_in 'User', with: 'john'
-    fill_in 'Password', with: 'shepard'
+    visit ''
+    fill_in 'User', with: 'Maria'
+    fill_in 'Password', with: 'admin'
     click_on 'Log in'
-    page.should have_content 'Welcome'
+    page.should have_content 'Salesman'
   end
 
   scenario 'El usuario selecciona un idioma' do

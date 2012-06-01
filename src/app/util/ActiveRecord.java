@@ -87,7 +87,6 @@ public abstract class ActiveRecord implements Serializable {
 			sql += query; 
 		else
 			sql += query + " = ?";
-		
 		try {
 			db = Database.getConnection();
 			PreparedStatement ps = db.prepareStatement(sql);
@@ -109,10 +108,11 @@ public abstract class ActiveRecord implements Serializable {
 						Method m = getSetter(name);
 						Class<?> type = m.getParameterTypes()[0];
 						if (type.getSuperclass() != null &&
-								type.getSuperclass().equals(this.getClass().getSuperclass()))
+								type.getSuperclass().equals(this.getClass().getSuperclass())) {
 							m.invoke(o, find((Class<? extends ActiveRecord>) type, (Integer) val));
-						else
+						} else {
 							m.invoke(o, val);
+						}
 					}
 				}
 				all.add(o);
@@ -228,6 +228,7 @@ public abstract class ActiveRecord implements Serializable {
 						f.getType().getSuperclass().equals(this.getClass().getSuperclass())) {
 					Method idGetter = null;
 					Object obj = getGetter(f.getName()).invoke(this);
+					System.out.println(f.getName());
 					if (obj.getClass().getMethod("get" + capitalize(((ActiveRecord) obj).getIdField())) != null)
 						idGetter = obj.getClass().getMethod("get" + capitalize(((ActiveRecord) obj).getIdField()));
 					ps.setObject(i, idGetter.invoke(obj));
