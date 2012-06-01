@@ -19,6 +19,15 @@
         <s:password id="vendedor.password" name="vendedor.password" />
         <s:submit value="Log in"/>
       </s:form>
+      
+    <s:url id="idiomaEn" action="idioma">
+      <s:param name="request_locale">en</s:param>
+    </s:url>  
+    <s:url id="idiomaEs" action="idioma">
+      <s:param name="request_locale">es</s:param>
+    </s:url>
+    <s:a href="%{idiomaEn}"><s:text name="idioma.ingles"></s:text></s:a>
+    <s:a href="%{idiomaEs}"><s:text name="idioma.espanol"></s:text></s:a>
     </div>
   </body>
 </html>

@@ -15,7 +15,7 @@
 	
 	<package name="default" namespace="/" extends="tiles-default">
 		<action name="idioma">
-			<result type="tiles">d_bienvenida</result>
+			<result type="tiles">d_vendedorLogin</result>
 		</action>
 	</package>
 

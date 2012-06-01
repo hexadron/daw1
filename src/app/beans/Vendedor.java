@@ -70,7 +70,7 @@ public class Vendedor extends ActiveRecord {
 	public void setEstadoCivil(EstadoCivil estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
-
+	
 	public Distrito getDistrito() {
 		return distrito;
 	}

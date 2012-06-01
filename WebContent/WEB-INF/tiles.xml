@@ -17,8 +17,4 @@
 	<definition name="d_vendedorDetail"	template="/views/vendedor/detalle.jsp">
 	</definition>
 
-	<definition name="d_idioma">
-		<put-attribute name="body" value ="/views/i18n.jsp"></put-attribute>
-	</definition>
-
 </tiles-definitions>

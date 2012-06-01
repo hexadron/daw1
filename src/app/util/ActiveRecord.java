@@ -228,12 +228,12 @@ public abstract class ActiveRecord implements Serializable {
 						f.getType().getSuperclass().equals(this.getClass().getSuperclass())) {
 					Method idGetter = null;
 					Object obj = getGetter(f.getName()).invoke(this);
-					System.out.println(f.getName());
 					if (obj.getClass().getMethod("get" + capitalize(((ActiveRecord) obj).getIdField())) != null)
 						idGetter = obj.getClass().getMethod("get" + capitalize(((ActiveRecord) obj).getIdField()));
 					ps.setObject(i, idGetter.invoke(obj));
-				} else
+				} else {
 					ps.setObject(i, getGetter(f.getName()).invoke(this));
+				}
 			}
 		
 			ps.setLong(i, (Long) getGetter(getIdField()).invoke(this));

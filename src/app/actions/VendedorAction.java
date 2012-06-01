@@ -2,6 +2,8 @@ package app.actions;
 
 import java.util.List;
 
+import app.beans.Distrito;
+import app.beans.EstadoCivil;
 import app.beans.Vendedor;
 import app.services.*;
 import app.util.Constantes;
@@ -14,6 +16,8 @@ public class VendedorAction extends ActionSupport {
 	private VendedorService service = GestionVendedorBusinessDelegate.getVendedorService();
 
 	private Vendedor vendedor;
+	private EstadoCivil estadoCivil;
+	private Distrito distrito;
 	private List<Vendedor> vendedores;
 	long codigo;
 
@@ -33,6 +37,22 @@ public class VendedorAction extends ActionSupport {
 		this.vendedor = vendedor;
 	}
 	
+	public EstadoCivil getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(EstadoCivil estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
+
+	public Distrito getDistrito() {
+		return distrito;
+	}
+
+	public void setDistrito(Distrito distrito) {
+		this.distrito = distrito;
+	}
+
 	public long getCodigo() {
 		return codigo;
 	}
@@ -52,6 +72,8 @@ public class VendedorAction extends ActionSupport {
 	}
 	
 	public String actualizarVendedor() throws Exception {
+		vendedor.setDistrito((Distrito) Distrito.find(Distrito.class, distrito.getId()));
+		vendedor.setEstadoCivil((EstadoCivil) EstadoCivil.find(EstadoCivil.class, estadoCivil.getId()));
 		service.actualizarVendedor(vendedor);
 		vendedores = service.obtenerTodos();
 		return Constantes.VENDEDOR_LIST;

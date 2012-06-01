@@ -22,19 +22,21 @@
           <s:textfield name="vendedor.fechaNacimiento" /></li>
       <li><label for="vendedor.edad"><s:text name="form.vendedor.edad" /></label>
           <s:textfield name="vendedor.edad" /></li>
-      <li><label for="vendedor.estadoCivil"><s:text name="form.vendedor.estadoCivil" /></label>
-          <s:select name="vendedor.estadoCivil.descripcion" 
-                    list="#application.estadosCiviles" 
+      <li><label for="estadoCivil.id"><s:text name="form.vendedor.estadoCivil" /></label>
+          <s:select name="estadoCivil.id" 
+                    list="#application.estadosCiviles"
                     listKey="id"
                     listValue="descripcion"
+                    value="%{ vendedor.estadoCivil.id }"
           /></li>
-      <li><label for="vendedor.distrito"><s:text name="form.vendedor.distrito" /></label>
-          <s:select name="vendedor.distrito.descripcion" 
+      <li><label for="distrito.id"><s:text name="form.vendedor.distrito" /></label>
+          <s:select name="distrito.id" 
                     list="#application.distritos"
                     listKey="id"
                     listValue="descripcion"
+                    value="%{ vendedor.distrito.id }"
           /></li>
-      <li><s:submit value="%{getText('form.boton.grabar')}"></s:submit></li>
+      <li><s:submit value="%{ getText('form.boton.grabar') }"></s:submit></li>
     </ul>
   </s:form>
   <s:url id="listado" action="listadoVendedor"></s:url>
