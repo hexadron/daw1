@@ -12,11 +12,11 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="../bootstrap.css" rel="stylesheet">
-    <link href="../main.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
 
     <!-- Le fav icons -->
-    <link rel="shortcut icon" href="../assets/favicon.ico">
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
   </head>
 
   <body>
@@ -50,17 +50,18 @@
               </div>
             </div>
           <div class="actions">
-            <input type="submit" class="btn primary" value="Ingresar" data-controls-modal="pop-modal" data-backdrop="static">&nbsp;<button type="reset" class="btn">Limpiar</button>
+            <input type="submit" class="btn primary" value="Ingresar" data-backdrop="static">&nbsp;<button type="reset" class="btn">Limpiar</button>
           </div>
+          </fieldset>
         </form>
         <div id="pop-modal"></div>
         <div id="pop-over"></div>
       </div>
     </div>
-    <script type="text/javascript" src="../assets/jquery-1.6.4.min.js"></script>
-    <script type="text/javascript" src="../assets/bootstrap-modal.js"></script>
-    <script type="text/javascript" src="../assets/bootstrap-twipsy.js"></script>
-    <script type="text/javascript" src="../assets/bootstrap-popover.js"></script>
-    <script type="text/javascript" src="../assets/nota.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap-twipsy.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap-popover.js"></script>
+    <script type="text/javascript" src="assets/js/nota.js"></script>
   </body>
 </html>

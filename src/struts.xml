@@ -6,17 +6,14 @@
 <struts>
 
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
-	<constant name="struts.devMode" value="false" />
+	<constant name="struts.devMode" value="true" />
 	
 	<constant name="struts.custom.i18n.resources" value="app.resources.Resources"></constant>
 	<constant name="struts.ui.theme" value="simple" />
-	
-	<include file="struts-vendedor.xml" />
+	<include file="struts-requerimientos.xml"></include>
 	
 	<package name="default" namespace="/" extends="tiles-default">
-		<action name="idioma">
-			<result type="tiles">d_vendedorLogin</result>
-		</action>
+				
 	</package>
 
 </struts>

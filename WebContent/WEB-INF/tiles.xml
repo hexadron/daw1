@@ -4,17 +4,17 @@
 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
+
+	<definition name="plantilla" template="/views/layouts/_template.jsp">
+		
+	</definition>
 	
-	<definition name="d_vendedorLogin" template="index.jsp">
+	<definition name="login" extends="plantilla">
+		<put-attribute name="body" value="/views/security/login.jsp"/>
 	</definition>
 	
-	<definition name="d_vendedorList" template="/views/vendedor/listado.jsp">
-	</definition>
-
-	<definition name="d_vendedorEdit" template="/views/vendedor/edicion.jsp">
-	</definition>
-
-	<definition name="d_vendedorDetail"	template="/views/vendedor/detalle.jsp">
-	</definition>
-
+	<definition name="GenerarSolicitudPage" extends="plantilla">
+		
+	</definition>	
+	
 </tiles-definitions>
