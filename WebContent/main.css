@@ -1,0 +1,12 @@
+body {
+  padding-top: 60px;
+}
+
+.sidebar li {
+  margin-bottom: 1em;
+}
+
+#map {
+  height: 40em;
+  width: 100%;
+}

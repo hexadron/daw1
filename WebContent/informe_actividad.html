@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Generar Actividad Realizada</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="bootstrap.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+
+    <!-- Le fav icons -->
+    <link rel="shortcut icon" href="../assets/favicon.ico">
+  </head>
+
+  <body>
+
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="/daw1">Atenci&oacute;n de Requerimientos</a>
+          <ul class="nav">
+            <li><a href="/daw1">Inicio</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="sidebar">
+        <div class="well">
+          <h5>Operaciones</h5>
+          <ul>
+            <li><a href="generar_solicitud.html">Generar Solicitud de Requerimiento</a></li>
+            <li><a href="registrar_requerimiento.html">Registrar Requerimiento</a></li>
+            <li><a href="verificar_solicitud.html">Verificar Solicitud de Requerimiento</a></li>
+            <li><a href="integrar_actividades.html">Integrar Actividades</a></li>
+            <li><a href="asignar_actividades.html">Asignar Actividades</a></li>
+            <li><a href="asignar_analistas.html">Asignar Analistas</a></li>
+            <li><a href="informe_actividad.html">Generar Informe de Actividad</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <div class="page-header">
+          <h1>Generar Actividad Realizada</h1>
+        </div>
+        <h3>Seleccione una actividad</h3>
+        <table class="zebra-striped empleados">
+          <thead>
+            <tr>
+              <th class="header">C&oacute;digo</th>
+              <th class="header red">Actividad</th>
+              <th class="header green">Codigo de Requerimimento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Implementación de API REST</td>
+              <td>1</td>
+            <tr>
+              <td>2</td>
+              <td>Mantenimiento de Base de Datos</td>
+              <td>1</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <form>
+          <fieldset>
+            <div class="clearfix">
+              <label for="afectada">Actividad</label>
+              <div class="input">
+                <input class="xlarge" size="30" type="text">
+              </div>
+            </div>
+            <div class="clearfix">
+              <label for="afectada">Descripción (opcional)</label>
+              <div class="input">
+                <textarea class="xlarge" rows="3"></textarea>
+              </div>
+            </div>
+          </fieldset>
+          <h3>Complete los datos de la actividad</h3>
+          <fieldset>
+            <div class="clearfix">
+              <label for="movimiento">Resultado de Actividad</label>
+              <div class="input">
+                <textarea class="input-xlarge" rows="5"></textarea>
+              </div>
+            </div>
+            <div class="clearfix">
+              <label for="movimiento">Observaciones (opcional)</label>
+              <div class="input">
+                <textarea class="input-xlarge" rows="3"></textarea>
+              </div>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <input type="submit" class="btn primary" value="Finalizar" data-controls-modal="pop-modal" data-backdrop="static">&nbsp;<button type="reset" class="btn">Limpiar</button>
+          </div>
+        </form>
+        <div id="pop-modal"></div>
+        <div id="pop-over"></div>
+      </div>
+    </div>
+    <script type="text/javascript" src="../assets/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../assets/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="../assets/bootstrap-twipsy.js"></script>
+    <script type="text/javascript" src="../assets/bootstrap-popover.js"></script>
+    <script type="text/javascript" src="../assets/nota.js"></script>
+  </body>
+</html>

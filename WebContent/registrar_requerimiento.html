@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Registrar Requerimiento</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="bootstrap.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+
+    <!-- Le fav icons -->
+    <link rel="shortcut icon" href="../assets/favicon.ico">
+  </head>
+
+  <body>
+
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="/daw1">Atenci&oacute;n de Requerimientos</a>
+          <ul class="nav">
+            <li><a href="/daw1">Inicio</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="sidebar">
+        <div class="well">
+          <h5>Operaciones</h5>
+          <ul>
+            <li><a href="generar_solicitud.html">Generar Solicitud de Requerimiento</a></li>
+            <li><a href="registrar_requerimiento.html">Registrar Requerimiento</a></li>
+            <li><a href="verificar_solicitud.html">Verificar Solicitud de Requerimiento</a></li>
+            <li><a href="integrar_actividades.html">Integrar Actividades</a></li>
+            <li><a href="asignar_actividades.html">Asignar Actividades</a></li>
+            <li><a href="asignar_analistas.html">Asignar Analistas</a></li>
+            <li><a href="informe_actividad.html">Generar Informe de Actividad</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <div class="page-header">
+          <h1>Registrar Requerimiento</h1>
+        </div>
+        <h3>Seleccione un requerimiento</h3>
+        <table class="zebra-striped empleados">
+          <thead>
+            <tr>
+              <th class="header">C&oacute;digo</th>
+              <th class="header red">Area</th>
+              <th class="header green">Tipo</th>
+              <th class="header blue">Costo Estimado</th>
+              <th class="header blue">Criciticidad</th>
+              <th class="header blue">Riesgo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Marketing</td>
+              <td>Proyecto</td>
+              <td>500</td>
+              <td>Baja</td>
+              <td>Baja</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Ventas</td>
+              <td>Mantenimiento Correctivo</td>
+              <td>750</td>
+              <td>Alta</td>
+              <td>Baja</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <form>
+          <h2>Datos Generales</h2>
+          <fieldset>
+            <div class="clearfix">
+              <label for="afectada">Tipo del Requerimiento</label>
+              <div class="input">
+                <select>
+                  <option>Seleccione un tipo</option>
+                  <option>Proyecto</option>
+                  <option>Migraci&oacute;n</option>
+                  <option>Mantenimiento Correctivo</option>
+                </select>
+              </div>          
+            </div>
+             <div class="clearfix">
+              <label for="demandante">Criticidad</label>
+              <div class="input">
+                <select>
+                  <option>Seleccione un nivel</option>
+                  <option>URG - Urgente</option>
+                </select>
+              </div>
+            </div>
+            <div class="clearfix">
+              <label for="afectada">Riesgo</label>
+              <div class="input">
+                <select>
+                  <option>Seleccione un nivel</option>
+                  <option>Alto</option>
+                  <option>Medio</option>
+                  <option>Bajo</option>
+                </select>
+              </div>          
+            </div>
+          </fieldset>
+          <h2>Alcance del Proyecto</h2>
+          <fieldset>
+            <div class="clearfix">
+              <label for="fecha">Funcionalidad requerida detallada</label>
+              <div class="input">
+                <textarea class="input-xlarge" rows="9"></textarea>
+              </div>
+            </div>
+            <div class="clearfix well">
+              <h3>Restricciones</h3>
+
+              <div class="clearfix">
+                <label for="fecha">Tiempo (días)</label>
+                <div class="input">
+                  <input class="xlarge" size="30" type="text">
+                </div>
+              </div>
+
+              <div class="clearfix">
+                <label for="fecha">Modalidad</label>
+                <div class="input">
+                  <select>
+                    <option>Seleccione una modalidad</option>
+                    <option>Web</option>
+                    <option>Escritorio</option>
+                    <option>Móvil</option>
+                  </select>
+                </div> 
+              </div>
+               
+              <div class="clearfix">
+                <label for="fecha">Navegador</label>
+                <div class="input">
+                  <textarea class="input-xlarge" rows="3"></textarea>
+                </div>
+              </div>
+
+              <div class="clearfix">
+                <label for="fecha">Gestor de Base de Datos</label>
+                <div class="input">
+                  <select>
+                    <option>Seleccione un gestor</option>
+                    <option>Redis</option>
+                    <option>Riak</option>
+                    <option>MongoDB</option>
+                  </select>
+                </div> 
+              </div>
+
+              <div class="clearfix">
+                <label for="fecha">Sistema Operativo de Servidores</label>
+                <div class="input">
+                  <textarea class="input-xlarge" rows="3"></textarea>
+                </div>
+              </div>
+
+              <div class="clearfix">
+                <label for="fecha">Protocolo de Transporte/Red utilizado</label>
+                <div class="input">
+                  <input class="xlarge" size="30" type="text">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <div class="actions">
+          <input type="submit" class="btn primary" value="Registrar" data-controls-modal="pop-modal" data-backdrop="static">&nbsp;<button type="reset" class="btn danger">Rechazar</button>
+        </div>
+        </form>
+        <div id="pop-modal"></div>
+        <div id="pop-over"></div>
+      </div>
+    </div>
+    <script type="text/javascript" src="../assets/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../assets/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="../assets/bootstrap-twipsy.js"></script>
+    <script type="text/javascript" src="../assets/bootstrap-popover.js"></script>
+    <script type="text/javascript" src="../assets/nota.js"></script>
+  </body>
+</html>
