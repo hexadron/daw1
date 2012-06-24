@@ -14,7 +14,7 @@
 	</definition>
 	
 	<definition name="GenerarSolicitudPage" extends="plantilla">
-		
+		<put-attribute name="body" value="/views/requerimientos/generar_solicitud.jsp"/>
 	</definition>	
 	
 </tiles-definitions>

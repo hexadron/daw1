@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	
+	<package name="seguridad" namespace="/" extends="tiles-default">
+	
+		<default-class-ref class="app.actions.LoginAction"></default-class-ref>
+	
+		<action name="login" method="login">
+			<result name="login" type="tiles">login</result>
+		</action>
+		
+		<action name="authenticate" method="authenticate">
+			<result name="success" type="tiles">GenerarSolicitudPage</result>
+			<result name="error" type="tiles">login</result>
+		</action>
+		    
+	</package>
+</struts>

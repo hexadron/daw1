@@ -19,7 +19,10 @@
   		org.apache.struts2.tiles.StrutsTilesListener
   	</listener-class>
   </listener>
-  <listener>
-      <listener-class>app.listeners.ListsListener</listener-class>
-  </listener>
+  <jsp-config>
+    <jsp-property-group>
+        <url-pattern>*.jsp</url-pattern>
+        <page-encoding>UTF-8</page-encoding>
+    </jsp-property-group>
+	</jsp-config>
 </web-app>

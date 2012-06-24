@@ -1,14 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>Iniciar Sesión</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>Iniciar SesiÃ³n</title>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -24,7 +23,12 @@
   </head>
   
   <body>
-  
+  		<tiles:insertAttribute name="body" ignore="true"></tiles:insertAttribute>
   </body>
- 
+  
+   <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+   <script type="text/javascript" src="assets/js/bootstrap-modal.js"></script>
+   <script type="text/javascript" src="assets/js/bootstrap-twipsy.js"></script>
+   <script type="text/javascript" src="assets/js/bootstrap-popover.js"></script>
+   <script type="text/javascript" src="assets/js/nota.js"></script>
 </html>

@@ -1,25 +1,14 @@
 package app.dao.factories;
 
-import app.dao.interfaces.*;
-import app.dao.mysql.*;
+import app.dao.mysql.UsuarioDAOImpl;
+import app.dao.interfaces.UsuarioDAO;
 
 public class MySQLDAOFactory extends DAOFactory {
 
 	@Override
-	public VendedorDAO getVendedorDAO() {
-		return new VendedorDAOImpl();
+	public UsuarioDAO getUsuarioDAO() {
+		return new UsuarioDAOImpl();
 	}
 
-	@Override
-	public DistritoDAO getDistritoDAO() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public EstadoCivilDAO getEstadoCivilDAO() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

@@ -10,10 +10,12 @@
 	
 	<constant name="struts.custom.i18n.resources" value="app.resources.Resources"></constant>
 	<constant name="struts.ui.theme" value="simple" />
+	<!-- Includes -->
 	<include file="struts-requerimientos.xml"></include>
+	<include file="struts-seguridad.xml"></include>
 	
 	<package name="default" namespace="/" extends="tiles-default">
-				
+		
 	</package>
 
 </struts>

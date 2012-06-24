@@ -7,14 +7,8 @@
 	
 	<package name="requerimientos" namespace="/" extends="tiles-default">
 	
-		<interceptors>	
-			<interceptor name="login" class="app.interceptors.LoginInterceptor"></interceptor>
-		</interceptors>
-		
-		<default-interceptor-ref name="login"></default-interceptor-ref>
-		
 		<action name="GenerarSolicitud">
-			<result name="success">/generar_solicitud.html</result>
+			<result name="success" type="tiles">GenerarSolicitudPage</result>
 		</action>
 		    
 	</package>
